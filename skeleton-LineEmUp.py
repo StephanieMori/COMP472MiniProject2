@@ -66,7 +66,7 @@ class Game:
 				py = int(input('enter the y coordinate: '))
 				if self.is_valid(px, py):
 					tryAgain = False
-					self.current_state[px][py] = 'X'
+					self.current_state[px][py] = '-'
 				else:
 					print('The location is not valid! Try again.')
 
@@ -79,14 +79,14 @@ class Game:
 		print()
 		
 	def is_valid(self, px, py): #edited to work with line em up
-		if px < 0 or px >= self.b or py < 0 or py >= self.b:
+		if px < 0 or px >= self.n or py < 0 or py >= self.n:
 			return False
 		elif self.current_state[px][py] != '.':
 			return False
 		else:
 			return True
 
-	def is_end(self):
+	def is_end(self): # TO WORK ON
 		# Vertical win
 		for i in range(0, 3):
 			if (self.current_state[0][i] != '.' and
@@ -118,7 +118,7 @@ class Game:
 		# It's a tie!
 		return '.'
 
-	def check_end(self):
+	def check_end(self): # TO WORK ON
 		self.result = self.is_end()
 		# Printing the appropriate message if the game has ended
 		if self.result != None:
@@ -261,11 +261,11 @@ class Game:
 			end = time.time()
 			if (self.player_turn == 'X' and player_x == self.HUMAN) or (self.player_turn == 'O' and player_o == self.HUMAN):
 					if self.recommend:
-						print(F'Evaluation time: {round(end - start, 7)}s')
+						print(F'Evaluation time: {round(end - start, self.t)}s')
 						print(F'Recommended move: x = {x}, y = {y}')
 					(x,y) = self.input_move()
 			if (self.player_turn == 'X' and player_x == self.AI) or (self.player_turn == 'O' and player_o == self.AI):
-						print(F'Evaluation time: {round(end - start, 7)}s')
+						print(F'Evaluation time: {round(end - start, self.t)}s')
 						print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
