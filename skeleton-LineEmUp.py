@@ -15,11 +15,11 @@ class Game:
 	d2 = 0	#max depth for adversarial search player 2
 	t = 0	#max time in secs to return move
 	
-	def __init__(self, recommend = True):
+	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True): # adding parameter for size of board, winning line-up size, number of blocks
 		self.initialize_game()
 		self.recommend = recommend
 		
-	def initialize_game(self, n, s, b): #adding parameter for size of board and winning line-up
+	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode): # adding parameter for size of board, winning line-up size, number of blocks
 		self.current_state = []
 		if n>=3 and n<=10 : #validating the parameters and setting them to the game if valid
 			self.n = n
@@ -36,23 +36,30 @@ class Game:
 		else :
 			print(b, " is not a valid number for blocks.")
 			exit(0)
-
 		for i in range(0, n):
 			new = []
 			for j in range(0, n):
 				new.append(".")
 			self.current_state.append(new)
-		#self.current_state = [['.','.','.'],
-		#					  ['.','.','.'],
-		#					  ['.','.','.']]
 		#before setting first player, ask where want blocks, and set them
 		setBlocks()
 		# Player X always plays first
 		self.player_turn = 'X'
 
-	def setBlocks(self): #mothod to ask user where want blocks, and validate and set them
+	def setBlocks(self): # method to ask user where want blocks, and validate and set them
+		for i in range(0, self.b):
+			tryAgain = True
+			while tryAgain is True:
+				print('Enter a location for a block:')
+				px = int(input('enter the x coordinate: '))
+				py = int(input('enter the y coordinate: '))
+				if self.is_valid(px, py):
+					tryAgain = False
+					self.current_state[px][py] = 'X'
+				else:
+					print('The location is not valid! Try again.')
 
-	def draw_board(self):
+	def draw_board(self): #edited to work with line em up
 		print()
 		for y in range(0, self.n):
 			for x in range(0, self.n):
@@ -60,8 +67,8 @@ class Game:
 			print()
 		print()
 		
-	def is_valid(self, px, py):
-		if px < 0 or px > 2 or py < 0 or py > 2:
+	def is_valid(self, px, py): #edited to work with line em up
+		if px < 0 or px >= self.b or py < 0 or py >= self.b:
 			return False
 		elif self.current_state[px][py] != '.':
 			return False
@@ -253,7 +260,7 @@ class Game:
 			self.switch_player()
 
 def main():
-	g = Game(3, recommend=True) #3 is sample value for size of board
+	g = Game(3, recommend=True) # THIS NEEDS TO BE CHECKED
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
