@@ -53,7 +53,7 @@ class Game:
 				new.append(".")
 			self.current_state.append(new)
 		#before setting first player, ask where want blocks, and set them
-		setBlocks()
+		self.setBlocks(self)
 		# Player X always plays first
 		self.player_turn = 'X'
 
@@ -118,7 +118,7 @@ class Game:
 		# It's a tie!
 		return '.'
 
-	def check_end(self): # TO WORK ON
+	def check_end(self): # works with line em up needs
 		self.result = self.is_end()
 		# Printing the appropriate message if the game has ended
 		if self.result != None:
