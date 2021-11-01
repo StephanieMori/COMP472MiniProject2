@@ -14,9 +14,11 @@ class Game:
 	d1 = 0	#max depth for adversarial search player 1
 	d2 = 0	#max depth for adversarial search player 2
 	t = 0	#max time in secs to return move
+	alphabeta = null #NOT SURE HOW USED YET
+	mode = 0 #modes are 0:human-human 1:human-AI 2:AI-human 3:AI-AI
 	
 	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True): # adding parameter for size of board, winning line-up size, number of blocks
-		self.initialize_game()
+		self.initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode)
 		self.recommend = recommend
 		
 	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode): # adding parameter for size of board, winning line-up size, number of blocks
@@ -35,6 +37,15 @@ class Game:
 			self.b = b
 		else :
 			print(b, " is not a valid number for blocks.")
+			exit(0)
+		self.d1 = d1 # CHECK HOW TO VALIDATE THIS
+		self.d2 = d2 # CHECK HOW TO VALIDATE THIS
+		self.t = t # CHECK HOW TO VALIDATE THIS
+		self.alphabeta = alphabeta #NOT SURE HOW USED YET
+		if mode >= 0 and mode < 4:
+			self.mode = mode
+		else:
+			print("The input value for game mode is not valid, should be from 0 to 3")
 			exit(0)
 		for i in range(0, n):
 			new = []
@@ -260,7 +271,7 @@ class Game:
 			self.switch_player()
 
 def main():
-	g = Game(3, recommend=True) # THIS NEEDS TO BE CHECKED
+	g = Game(n, s, b, d1, d2, t, alphabeta, mode, recommend = True) # THIS NEEDS TO BE CHECKED
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
