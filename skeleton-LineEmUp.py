@@ -14,7 +14,8 @@ class Game:
 	d1 = 0	#max depth for adversarial search player 1
 	d2 = 0	#max depth for adversarial search player 2
 	t = 0	#max time in secs to return move
-	alphabeta = null #NOT SURE HOW USED YET
+	alphabeta = None #NOT SURE HOW USED YET
+	simpleH = 1 #1 is using simple heuristic, 0 is using complex heuristic
 	mode = 0 #modes are 0:human-human 1:human-AI 2:AI-human 3:AI-AI
 	
 	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True): # adding parameter for size of board, winning line-up size, number of blocks
@@ -66,7 +67,7 @@ class Game:
 				py = int(input('enter the y coordinate: '))
 				if self.is_valid(px, py):
 					tryAgain = False
-					self.current_state[px][py] = '-'
+					self.current_state[px][py] = '*'
 				else:
 					print('The location is not valid! Try again.')
 
@@ -86,7 +87,7 @@ class Game:
 		else:
 			return True
 
-	def is_end(self): # TO WORK ON
+	def is_end(self): # IN OTHER FILE - is_end().py
 		# Vertical win
 		for i in range(0, 3):
 			if (self.current_state[0][i] != '.' and
@@ -271,7 +272,7 @@ class Game:
 			self.switch_player()
 
 def main():
-	g = Game(n, s, b, d1, d2, t, alphabeta, mode, recommend = True) # THIS NEEDS TO BE CHECKED
+	g = Game(n, s, b, d1, d2, t, alphabeta, mode, e1/e2, recommend = True) # THIS NEEDS TO BE CHECKED
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
