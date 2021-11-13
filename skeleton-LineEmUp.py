@@ -1,6 +1,9 @@
 # based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
 
 import time
+import isEnd
+import complexHeuristic
+import simpleHeuristic
 
 class Game:
 	#game parameters
@@ -10,19 +13,22 @@ class Game:
 	AI = 3
 	n = 0	#size of board
 	b = 0	#number of blocks
-	s = 0	#winning line-up size
+	s = 0	#winning line-up streak
 	d1 = 0	#max depth for adversarial search player 1
 	d2 = 0	#max depth for adversarial search player 2
 	t = 0	#max time in secs to return move
-	alphabeta = None #NOT SURE HOW USED YET
+	alphabeta = None # if 1 then using alpha beta, if 0 then using minimax
 	simpleH = 1 #1 is using simple heuristic, 0 is using complex heuristic
 	mode = 0 #modes are 0:human-human 1:human-AI 2:AI-human 3:AI-AI
+	player1Mode = None
+	player2Mode = None
 	
-	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True): # adding parameter for size of board, winning line-up size, number of blocks
+	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True):
 		self.initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode)
 		self.recommend = recommend
-		
-	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode): # adding parameter for size of board, winning line-up size, number of blocks
+
+	# parameters are same as listed above
+	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode): # winning line-up size, number of blocks
 		self.current_state = []
 		if n>=3 and n<=10 : #validating the parameters and setting them to the game if valid
 			self.n = n
@@ -42,9 +48,21 @@ class Game:
 		self.d1 = d1 # CHECK HOW TO VALIDATE THIS
 		self.d2 = d2 # CHECK HOW TO VALIDATE THIS
 		self.t = t # CHECK HOW TO VALIDATE THIS
-		self.alphabeta = alphabeta #NOT SURE HOW USED YET
+		self.alphabeta = alphabeta #determines if alphabeta is used or minimax
 		if mode >= 0 and mode < 4:
 			self.mode = mode
+			if mode == 0:
+				self.player1Mode = 'human'
+				self.player2Mode = 'human'
+			elif mode == 1:
+				self.player1Mode = 'human'
+				self.player2Mode = 'AI'
+			elif mode == 2:
+				self.player1Mode = 'AI'
+				self.player2Mode = 'human'
+			elif mode == 3:
+				self.player1Mode = 'AI'
+				self.player2Mode = 'AI'
 		else:
 			print("The input value for game mode is not valid, should be from 0 to 3")
 			exit(0)
@@ -53,12 +71,14 @@ class Game:
 			for j in range(0, n):
 				new.append(".")
 			self.current_state.append(new)
+		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
 		#before setting first player, ask where want blocks, and set them
 		self.setBlocks(self)
 		# Player X always plays first
 		self.player_turn = 'X'
 
 	def setBlocks(self): # method to ask user where want blocks, and validate and set them
+		blocks = []
 		for i in range(0, self.b):
 			tryAgain = True
 			while tryAgain is True:
@@ -68,8 +88,11 @@ class Game:
 				if self.is_valid(px, py):
 					tryAgain = False
 					self.current_state[px][py] = '*'
+					thisBlock = "(",px,",",py,")"
+					blocks.append(thisBlock)
 				else:
 					print('The location is not valid! Try again.')
+		print(blocks)
 
 	def draw_board(self): #edited to work with line em up
 		print()
@@ -244,6 +267,7 @@ class Game:
 			player_x = self.HUMAN
 		if player_o == None:
 			player_o = self.HUMAN
+		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", self.a, e1(regular))
 		while True:
 			self.draw_board()
 			if self.check_end():
@@ -272,9 +296,11 @@ class Game:
 			self.switch_player()
 
 def main():
-	g = Game(n, s, b, d1, d2, t, alphabeta, mode, e1/e2, recommend = True) # THIS NEEDS TO BE CHECKED
-	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
-	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
+	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True)
+	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
+	g = Game( ... )
+	g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
+	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 if __name__ == "__main__":
 	main()
