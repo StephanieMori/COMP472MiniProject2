@@ -4,6 +4,7 @@ import time
 import isEnd
 import complexHeuristic
 import simpleHeuristic
+import alphabeta
 
 class Game:
 	#game parameters
@@ -179,55 +180,6 @@ class Game:
 					self.current_state[i][j] = '.'
 		return (value, x, y)
 
-	def alphabeta(self, alpha=-2, beta=2, max=False):
-		# Minimizing for 'X' and maximizing for 'O'
-		# Possible values are:
-		# -1 - win for 'X'
-		# 0  - a tie
-		# 1  - loss for 'X'
-		# We're initially setting it to 2 or -2 as worse than the worst case:
-		value = 2
-		if max:
-			value = -2
-		x = None
-		y = None
-		result = isEnd.is_end(self)
-		if result == 'X':
-			return (-1, x, y)
-		elif result == 'O':
-			return (1, x, y)
-		elif result == '.':
-			return (0, x, y)
-		for i in range(0, 3):
-			for j in range(0, 3):
-				if self.current_state[i][j] == '.':
-					if max:
-						self.current_state[i][j] = 'O'
-						(v, _, _) = self.alphabeta(alpha, beta, max=False)
-						if v > value:
-							value = v
-							x = i
-							y = j
-					else:
-						self.current_state[i][j] = 'X'
-						(v, _, _) = self.alphabeta(alpha, beta, max=True)
-						if v < value:
-							value = v
-							x = i
-							y = j
-					self.current_state[i][j] = '.'
-					if max: 
-						if value >= beta:
-							return (value, x, y)
-						if value > alpha:
-							alpha = value
-					else:
-						if value <= alpha:
-							return (value, x, y)
-						if value < beta:
-							beta = value
-		return (value, x, y)
-
 	def play(self,algo=None,player_x=None,player_o=None):
 		if algo == None:
 			algo = self.ALPHABETA
@@ -235,7 +187,7 @@ class Game:
 			player_x = self.HUMAN
 		if player_o == None:
 			player_o = self.HUMAN
-		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", self.a, e1(regular))
+		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", self.a, e1(regular)) # NEED TO CHECK THIS
 		while True:
 			self.draw_board()
 			if self.check_end():
@@ -246,11 +198,12 @@ class Game:
 					(_, x, y) = self.minimax(max=False)
 				else:
 					(_, x, y) = self.minimax(max=True)
-			else: # algo == self.ALPHABETA
+			else: # algo == self.
+				# BETA
 				if self.player_turn == 'X':
-					(m, x, y) = self.alphabeta(max=False)
+					(m, x, y) = alphabeta.alphabeta(max=False)
 				else:
-					(m, x, y) = self.alphabeta(max=True)
+					(m, x, y) = alphabeta.alphabeta(max=True)
 			end = time.time()
 			if (self.player_turn == 'X' and player_x == self.HUMAN) or (self.player_turn == 'O' and player_o == self.HUMAN):
 					if self.recommend:
