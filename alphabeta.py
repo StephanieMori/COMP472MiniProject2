@@ -17,8 +17,8 @@ def alphabeta(self, alpha=-2, beta=2, max=False):
         return (1, x, y)
     elif result == '.':
         return (0, x, y)
-    for i in range(0, 3):
-        for j in range(0, 3):
+    for i in range(0, self.n):
+        for j in range(0, self.n):
             if self.current_state[i][j] == '.':
                 if max:
                     self.current_state[i][j] = 'O'
