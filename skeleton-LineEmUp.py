@@ -2,6 +2,7 @@
 
 import time
 import isEnd
+import math
 import random
 import complexHeuristic
 import simpleHeuristic
@@ -49,8 +50,17 @@ class Game:
 		else :
 			print(b, " is not a valid number for blocks.")
 			exit(0)
-		self.d1 = d1 # CHECK HOW TO VALIDATE THIS - n-b factorial
-		self.d2 = d2 # CHECK HOW TO VALIDATE THIS
+		maxDepthValue = math.factorial(n-b)
+		if d1 <= maxDepthValue and d1 > 0:
+			self.d1 = d1
+		else:
+			print(d1, " is not a valid depth.")
+			exit(0)
+		if d2 <= maxDepthValue and d2 > 0:
+			self.d2 = d2
+		else:
+			print(d2, " is not a valid depth.")
+			exit(0)
 		self.t = t # CHECK HOW TO VALIDATE THIS
 		self.alphabeta = alphabeta #determines if alphabeta is used or minimax
 		if mode >= 0 and mode < 4:
