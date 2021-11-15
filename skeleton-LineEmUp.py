@@ -242,45 +242,6 @@ class Game:
 			self.player_turn = 'X'
 		return self.player_turn
 
-	def minimax(self, max=False):
-		# Minimizing for 'X' and maximizing for 'O'
-		# Possible values are:
-		# -1 - win for 'X'
-		# 0  - a tie
-		# 1  - loss for 'X'
-		# We're initially setting it to 2 or -2 as worse than the worst case:
-		value = 2
-		if max:
-			value = -2
-		x = None
-		y = None
-		result = isEnd.is_end(self)
-		if result == 'X':
-			return (-1, x, y)
-		elif result == 'O':
-			return (1, x, y)
-		elif result == '.':
-			return (0, x, y)
-		for i in range(0, 3):
-			for j in range(0, 3):
-				if self.current_state[i][j] == '.':
-					if max:
-						self.current_state[i][j] = 'O'
-						(v, _, _) = self.minimax(max=False)
-						if v > value:
-							value = v
-							x = i
-							y = j
-					else:
-						self.current_state[i][j] = 'X'
-						(v, _, _) = self.minimax(max=True)
-						if v < value:
-							value = v
-							x = i
-							y = j
-					self.current_state[i][j] = '.'
-		return (value, x, y)
-
 	def play(self,algo=None,player_x=None,player_o=None):
 		if algo == None:
 			algo = self.ALPHABETA
