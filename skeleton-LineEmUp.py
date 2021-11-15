@@ -50,7 +50,7 @@ class Game:
 				if self.is_valid(px, py):
 					tryAgain = False
 					self.current_state[px][py] = '*'
-					thisBlock = "(",px,",",py,")"
+					thisBlock = px,py
 					blocks.append(thisBlock)
 				else:
 					print('The location is not valid! Try again.')
@@ -258,8 +258,8 @@ class Game:
 			p2HeuristicPrint = 'e1(regular)'
 		else:
 			p2HeuristicPrint = 'e2(defensive)'
-		print("Player 1: ", self.player1Mode, " d= ", self.d1, " a=", a, " ", p1HeuristicPrint)
-		print("Player 2: ", self.player2Mode, " d= ", self.d2, " a=", a, " ", p2HeuristicPrint)
+		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", a, " ", p1HeuristicPrint)
+		print("Player 2: ", self.player2Mode, " d=", self.d2, " a=", a, " ", p2HeuristicPrint)
 		while True:
 			self.draw_board()
 			if self.check_end():
@@ -267,9 +267,9 @@ class Game:
 			start = time.time()
 			if self.alphabeta == 0:
 				if self.player_turn == 'X':
-					(_, x, y) = self.minimax(max=False)
+					(_, x, y) = minimax2.minimax(max=False)
 				else:
-					(_, x, y) = self.minimax(max=True)
+					(_, x, y) = minimax2.minimax(max=True)
 			else: # algo == self.
 				# BETA
 				if self.player_turn == 'X':
