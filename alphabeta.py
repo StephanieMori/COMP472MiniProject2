@@ -1,13 +1,15 @@
-def alphabeta(self, alpha=-2, beta=2, max=False):
+import math
+
+def alphabeta(self, alpha=-math.inf, beta=math.inf, max=False):
     # Minimizing for 'X' and maximizing for 'O'
     # Possible values are:
     # -1 - win for 'X'
     # 0  - a tie
     # 1  - loss for 'X'
     # We're initially setting it to 2 or -2 as worse than the worst case:
-    value = 2
+    value = math.inf
     if max:
-        value = -2
+        value = -math.inf
     x = None
     y = None
     result = self.is_end(self)
