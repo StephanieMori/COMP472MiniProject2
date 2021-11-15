@@ -2,6 +2,7 @@
 
 import time
 import isEnd
+import random
 import complexHeuristic
 import simpleHeuristic
 import alphabeta
@@ -23,6 +24,8 @@ class Game:
 	mode = 0 #modes are 0:human-human 1:human-AI 2:AI-human 3:AI-AI
 	player1Mode = None
 	player2Mode = None
+	p1heuristic = None # e1 = simple heuristic e2 = complex heuristic
+	p2heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	
 	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True):
 		self.initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode)
@@ -46,7 +49,7 @@ class Game:
 		else :
 			print(b, " is not a valid number for blocks.")
 			exit(0)
-		self.d1 = d1 # CHECK HOW TO VALIDATE THIS
+		self.d1 = d1 # CHECK HOW TO VALIDATE THIS - n-b factorial
 		self.d2 = d2 # CHECK HOW TO VALIDATE THIS
 		self.t = t # CHECK HOW TO VALIDATE THIS
 		self.alphabeta = alphabeta #determines if alphabeta is used or minimax
@@ -75,6 +78,8 @@ class Game:
 		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
 		#before setting first player, ask where want blocks, and set them
 		self.setBlocks(self)
+		# Ask users which heuristic they want
+		self.setHeuristics(self)
 		# Player X always plays first
 		self.player_turn = 'X'
 
@@ -94,6 +99,90 @@ class Game:
 				else:
 					print('The location is not valid! Try again.')
 		print(blocks)
+
+	# function to ask human user what heuristic they want - human sets AI heuristic - if 2 AI then set at random
+	def setHeuristics(self):
+		tryAgain = True
+		if self.mode == 0:	#human-human
+			# first for player 1
+			while tryAgain is True:
+				print('Player 1 what heuristic would you like to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p1e = input()
+				if p1e == 'e1' or p1e == 'e2':
+					tryAgain = False
+					self.p1heuristic = p1e
+				else:
+					print('This is not a valid input! Try again.')
+			tryAgain = True
+			# then for player 2
+			while tryAgain is True:
+				print('Player 2 what heuristic would you like to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p2e = input()
+				if p2e == 'e1' or p2e == 'e2':
+					tryAgain = False
+					self.p2heuristic = p2e
+				else:
+					print('This is not a valid input! Try again.')
+		elif self.mode == 1:	#human-AI
+			# first for player 1
+			while tryAgain is True:
+				print('Player 1 what heuristic would you like to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p1e = input()
+				if p1e == 'e1' or p1e == 'e2':
+					tryAgain = False
+					self.p1heuristic = p1e
+				else:
+					print('This is not a valid input! Try again.')
+			tryAgain = True
+			# then for player 2
+			while tryAgain is True:
+				print('Player 1 what heuristic would you like player 2 (AI) to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p2e = input()
+				if p2e == 'e1' or p2e == 'e2':
+					tryAgain = False
+					self.p2heuristic = p2e
+				else:
+					print('This is not a valid input! Try again.')
+		elif self.mode == 2:	#AI-human
+			# first for player 1
+			while tryAgain is True:
+				print('Player 2 what heuristic would you like player 1 (AI) to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p1e = input()
+				if p1e == 'e1' or p1e == 'e2':
+					tryAgain = False
+					self.p1heuristic = p1e
+				else:
+					print('This is not a valid input! Try again.')
+			tryAgain = True
+			# then for player 2
+			while tryAgain is True:
+				print('Player 2 what heuristic would you like to use?')
+				print('--> enter e1 for regular or e2 for complex')
+				p2e = input()
+				if p2e == 'e1' or p2e == 'e2':
+					tryAgain = False
+					self.p2heuristic = p2e
+				else:
+					print('This is not a valid input! Try again.')
+		else:	#AI-AI
+			randomVal1 = random.randint(1, 3)
+			randomVal2 = random.randint(1, 3)
+			# for player 1
+			if randomVal1 == 1:
+				self.p1heuristic = 'e1'
+			else:
+				self.p1heuristic = 'e2'
+			# for player 2
+			if randomVal2 == 1:
+				self.p2heuristic = 'e1'
+			else:
+				self.p2heuristic = 'e2'
+
 
 	def draw_board(self): #edited to work with line em up
 		print()

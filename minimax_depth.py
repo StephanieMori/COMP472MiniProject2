@@ -1,3 +1,6 @@
+import complexHeuristic
+import simpleHeuristic
+
 def minimax(self,d1,d2,max=False):
 		# Minimizing for 'X' and maximizing for 'O'
 		# Possible values are:
@@ -17,15 +20,15 @@ def minimax(self,d1,d2,max=False):
 			return (1, x, y)
 		elif result == '.':
 			return (0, x, y)
-	  #implementing Heuristics(?)
-		if self.d1 ==0:
-			return (self.simpleHeuristic,x,y)
-	  else:
-			return (self.sophisticatedHeuristic,x,y)
-	  if self.d2 ==0:
-			return (self.simpleHeuristic,x,y)
-	  else:
-			(self.sophisticatedHeuristic,x,y)
+	  	#implementing Heuristics(?)
+		if self.p1heuristic == 'e1':
+			return (simpleHeuristic.scoreThisCell(self,x,y,self.n,self.s))
+	  	else:
+			return (complexHeuristic.scoreThisCell(self, x, y, self.n, self.s))
+	  	if self.d2 == e1:
+			return (simpleHeuristic.scoreThisCell(self,x,y,self.n,self.s))
+	 	 else:
+			(complexHeuristic.scoreThisCell(self, x, y, self.n, self.s))
 	 
 	 #
 		 for i in range(0,self.n):
@@ -35,15 +38,15 @@ def minimax(self,d1,d2,max=False):
 						self.current_state[i][j]= 'O'
 						(v,_,_)=self.minimax(d1,d2-1, max= False) #Min when max=false
 			      if v> value:
-							value=v;
-							x=i;
-							y=i;
+							value=v
+							x=i
+							y=i
 					else:
 						self.current_state[i][j]= 'X'
 						(v,_,_)=self.minimax(d1=1,d2, max= True)
 			      if v> value:
-							value=v;
-							x=i;
-							y=i;
+							value=v
+							x=i
+							y=i
 			    self.current_state[i][j]='.'
 		return (value, x, y)
