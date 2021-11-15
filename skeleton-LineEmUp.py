@@ -30,68 +30,12 @@ class Game:
 	p1heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	p2heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	
-	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode):
-		self.initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode)
-		#self.recommend = recommend
+	def __init__(self):
+		self.initialize_game()
 
 	# parameters are same as listed above
-	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode):
+	def initialize_game(self):
 		self.current_state = []
-		if n>=3 and n<=10 : #validating the parameters and setting them to the game if valid
-			self.n = n
-		else :
-			print(n, " is not a valid board size.")
-			exit(0)
-		if s>=3 and s<=n :
-			self.s = s
-		else :
-			print(s, " is not a valid winning line-up size.")
-			exit(0)
-		if b>=0 and b<=2*n :
-			self.b = b
-		else :
-			print(b, " is not a valid number for blocks.")
-			exit(0)
-		maxDepthValue = math.factorial(n-b)
-		if d1 <= maxDepthValue and d1 > 0:
-			self.d1 = d1
-		else:
-			print(d1, " is not a valid depth.")
-			exit(0)
-		if d2 <= maxDepthValue and d2 > 0:
-			self.d2 = d2
-		else:
-			print(d2, " is not a valid depth.")
-			exit(0)
-		self.t = t # CHECK HOW TO VALIDATE THIS
-		self.alphabeta = alphabeta #determines if alphabeta is used or minimax
-		if mode >= 0 and mode < 4:
-			self.mode = mode
-			if mode == 0:
-				self.player1Mode = 'human'
-				self.player2Mode = 'human'
-			elif mode == 1:
-				self.player1Mode = 'human'
-				self.player2Mode = 'AI'
-			elif mode == 2:
-				self.player1Mode = 'AI'
-				self.player2Mode = 'human'
-			elif mode == 3:
-				self.player1Mode = 'AI'
-				self.player2Mode = 'AI'
-		else:
-			print("The input value for game mode is not valid, should be from 0 to 3")
-			exit(0)
-		for i in range(0, n):
-			new = []
-			for j in range(0, n):
-				new.append(".")
-			self.current_state.append(new)
-		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
-		#before setting first player, ask where want blocks, and set them
-		self.setBlocks(self)
-		# Ask users which heuristic they want
-		self.setHeuristics(self)
 		# Player X always plays first
 		self.player_turn = 'X'
 
@@ -242,13 +186,63 @@ class Game:
 			self.player_turn = 'X'
 		return self.player_turn
 
-	def play(self,algo=None,player_x=None,player_o=None):
-		if algo == None:
-			algo = self.ALPHABETA
-		if player_x == None:
-			player_x = self.HUMAN
-		if player_o == None:
-			player_o = self.HUMAN
+	def play(self, n, s, b, d1, d2, t, alphabeta, mode):
+		if n>=3 and n<=10 : #validating the parameters and setting them to the game if valid
+			self.n = n
+		else :
+			print(n, " is not a valid board size.")
+			exit(0)
+		if s>=3 and s<=n :
+			self.s = s
+		else :
+			print(s, " is not a valid winning line-up size.")
+			exit(0)
+		if b>=0 and b<=2*n :
+			self.b = b
+		else :
+			print(b, " is not a valid number for blocks.")
+			exit(0)
+		maxDepthValue = math.factorial(n-b)
+		if d1 <= maxDepthValue and d1 > 0:
+			self.d1 = d1
+		else:
+			print(d1, " is not a valid depth.")
+			exit(0)
+		if d2 <= maxDepthValue and d2 > 0:
+			self.d2 = d2
+		else:
+			print(d2, " is not a valid depth.")
+			exit(0)
+		self.t = t # CHECK HOW TO VALIDATE THIS
+		self.alphabeta = alphabeta #determines if alphabeta is used or minimax
+		if mode >= 0 and mode < 4:
+			self.mode = mode
+			if mode == 0:
+				self.player1Mode = 'human'
+				self.player2Mode = 'human'
+			elif mode == 1:
+				self.player1Mode = 'human'
+				self.player2Mode = 'AI'
+			elif mode == 2:
+				self.player1Mode = 'AI'
+				self.player2Mode = 'human'
+			elif mode == 3:
+				self.player1Mode = 'AI'
+				self.player2Mode = 'AI'
+		else:
+			print("The input value for game mode is not valid, should be from 0 to 3")
+			exit(0)
+		for i in range(0, n):
+			new = []
+			for j in range(0, n):
+				new.append(".")
+			self.current_state.append(new)
+		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
+		#before setting first player, ask where want blocks, and set them
+		self.setBlocks()
+		# Ask users which heuristic they want
+		self.setHeuristics()
+
 		a = None
 		if self.alphabeta == 1:
 			a = True
@@ -264,14 +258,14 @@ class Game:
 			p2HeuristicPrint = 'e1(regular)'
 		else:
 			p2HeuristicPrint = 'e2(defensive)'
-		print("Player 1: ", self.player1Mode, " d= ", self.d1, " a=", self.a, " ", p1HeuristicPrint)
-		print("Player 2: ", self.player2Mode, " d= ", self.d2, " a=", self.a, " ", p2HeuristicPrint)
+		print("Player 1: ", self.player1Mode, " d= ", self.d1, " a=", a, " ", p1HeuristicPrint)
+		print("Player 2: ", self.player2Mode, " d= ", self.d2, " a=", a, " ", p2HeuristicPrint)
 		while True:
 			self.draw_board()
 			if self.check_end():
 				return
 			start = time.time()
-			if algo == self.MINIMAX:
+			if self.alphabeta == 0:
 				if self.player_turn == 'X':
 					(_, x, y) = self.minimax(max=False)
 				else:
@@ -283,22 +277,22 @@ class Game:
 				else:
 					(m, x, y) = alphabeta.alphabeta(max=True)
 			end = time.time()
-			if (self.player_turn == 'X' and player_x == self.HUMAN) or (self.player_turn == 'O' and player_o == self.HUMAN):
-					if self.recommend:
-						print(F'Evaluation time: {round(end - start, self.t)}s')
-						print(F'Recommended move: x = {x}, y = {y}')
-					(x,y) = self.input_move()
-			if (self.player_turn == 'X' and player_x == self.AI) or (self.player_turn == 'O' and player_o == self.AI):
+			if (self.player_turn == 'X' and self.player1Mode == 'human') or (self.player_turn == 'O' and self.player2Mode == 'human'):
+				if self.recommend:
+					print(F'Evaluation time: {round(end - start, self.t)}s')
+					print(F'Recommended move: x = {x}, y = {y}')
+				(x,y) = self.input_move()
+			if (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
 						print(F'Evaluation time: {round(end - start, self.t)}s')
 						print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
 
 def main():
-	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True)
+	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode)
 	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
-	g = Game(5, 4, 1, 3, 3, 10, 0, 0)
-#	g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
+	g = Game()
+	g.play(5, 4, 1, 3, 3, 10, 0, 0)
 #	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 if __name__ == "__main__":
