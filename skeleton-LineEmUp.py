@@ -7,6 +7,8 @@ import random
 import complexHeuristic
 import simpleHeuristic
 import alphabeta
+import minimax
+import minimax2
 
 class Game:
 	#game parameters

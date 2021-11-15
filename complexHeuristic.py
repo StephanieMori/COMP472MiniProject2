@@ -9,7 +9,7 @@ s = 3
 def scoreThisCell(game, x, y, n, s):
         currentSymbol = game.player_turn #the current player's symbol
         otherSymbol = None #other player's symbol
-        if currentSymbol is 'X':
+        if currentSymbol == 'X':
                 otherSymbol = 'O'
         else:
                 otherSymbol = 'X'
@@ -20,13 +20,13 @@ def scoreThisCell(game, x, y, n, s):
         rowStreak = 0
         #first checking row associated with this cell
         for col in range(0,n):
-                if game[x][n] is currentSymbol or '.':
+                if game[x][n] is currentSymbol or game[x][n] is '.':
                         rowStreak+=1
-                        if game[x][n] is currentSymbol:
+                        if game[x][n] == currentSymbol:
                                 numCurrentSymbols += 1
                 else:
                         rowStreak = 0
-                        if game[x][n] is otherSymbol:
+                        if game[x][n] == otherSymbol:
                                 numOtherSymbols += 1
         if rowStreak >= s:
                 #if there is the possibility of making a winning streak, get the score
@@ -38,13 +38,13 @@ def scoreThisCell(game, x, y, n, s):
         numOtherSymbols = 0
         #now checking the column associated with this cell
         for row in range(0,n):
-                if game[n][y] is currentSymbol or '.':
+                if game[n][y] == currentSymbol or game[n][y] == '.':
                         colStreak += 1
-                        if game[n][y] is currentSymbol:
+                        if game[n][y] == currentSymbol:
                                 numCurrentSymbols += 1
                 else:
                         colStreak = 0
-                        if game[n][y] is otherSymbol:
+                        if game[n][y] == otherSymbol:
                                 numOtherSymbols += 1
         if colStreak >= s:
                 #if there is the possibility of making a winning streak, get the score
@@ -59,13 +59,13 @@ def scoreThisCell(game, x, y, n, s):
         xval = x-step
         yval = y-step
         while xval < n and yval < n :
-                if game[xval][yval] is currentSymbol or '.':
+                if game[xval][yval] == currentSymbol or game[xval][yval] == '.':
                         diag1Streak += 1
-                        if game[xval][yval] is currentSymbol:
+                        if game[xval][yval] == currentSymbol:
                                 numCurrentSymbols += 1
                 else:
                         diag1Streak = 0
-                        if game[xval][yval] is otherSymbol:
+                        if game[xval][yval] == otherSymbol:
                                 numOtherSymbols += 1
                 xval += 1
                 yval += 1
@@ -82,13 +82,13 @@ def scoreThisCell(game, x, y, n, s):
         xval = x+step
         yval = y+step
         while xval >= 0 and yval >= 0 :
-                if game[xval][yval] is currentSymbol or '.':
+                if game[xval][yval] == currentSymbol or game[xval][yval] == '.':
                         diag2Streak += 1
-                        if game[xval][yval] is currentSymbol:
+                        if game[xval][yval] == currentSymbol:
                                 numCurrentSymbols += 1
                 else:
                         diag2Streak = 0
-                        if game[xval][yval] is otherSymbol:
+                        if game[xval][yval] == otherSymbol:
                                 numOtherSymbols += 1
                 xval += 1
                 yval += 1
