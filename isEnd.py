@@ -23,7 +23,7 @@ def is_end(self):
     for i in range(n):
         streakX = 0
         for j in range(n):
-            if self.current_state[j][i] is 'X' :
+            if self.current_state[j][i] == 'X' :
                 streakX += 1
             else:
                 streakX = 0
@@ -37,7 +37,7 @@ def is_end(self):
         for i in range(n):
             streakX = 0
             for j in range(n):
-                if self.current_state[i][j] is 'X':
+                if self.current_state[i][j] == 'X':
                     streakX += 1
                 else:
                     streakX = 0
@@ -50,7 +50,7 @@ def is_end(self):
     if winFoundX is False:
         for i in range(n):
             streakX = 0
-            if self.current_state[i][i] is 'X':
+            if self.current_state[i][i] == 'X':
                 streakX += 1
             else:
                 streakX = 0
@@ -63,7 +63,7 @@ def is_end(self):
     if winFoundX is False:
         for i in range(n):
             streakX = 0
-            if self.current_state[i][n-1-i] is 'X':
+            if self.current_state[i][n-1-i] == 'X':
                 streakX += 1
             else:
                 streakX = 0
@@ -77,7 +77,7 @@ def is_end(self):
     for i in range(n):
         streakY = 0
         for j in range(n):
-            if self.current_state[j][i] is 'Y' :
+            if self.current_state[j][i] == 'Y' :
                 streakY += 1
             else:
                 streakY = 0
@@ -91,7 +91,7 @@ def is_end(self):
         for i in range(n):
             streakY = 0
             for j in range(n):
-                if self.current_state[i][j] is 'Y':
+                if self.current_state[i][j] == 'Y':
                     streakY += 1
                 else:
                     streakY = 0
@@ -104,7 +104,7 @@ def is_end(self):
     if winFoundY is False:
         for i in range(n):
             streakY = 0
-            if self.current_state[i][i] is 'Y':
+            if self.current_state[i][i] == 'Y':
                 streakY += 1
             else:
                 streakY = 0
@@ -117,7 +117,7 @@ def is_end(self):
     if winFoundY is False:
         for i in range(n):
             streakY = 0
-            if self.current_state[i][n-1-i] is 'Y':
+            if self.current_state[i][n-1-i] == 'Y':
                 streakY += 1
             else:
                 streakY = 0
