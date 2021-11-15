@@ -1,15 +1,8 @@
-game = [['.','.','*','.'],
-        ['X','.','.','O'],
-        ['.','.','.','.'],
-        ['.','*','.','O']]
-n = 4
-s = 3
-
 # note : iteration looks at rows first
 def scoreThisCell(game, x, y, n, s):
         currentSymbol = game.player_turn #the current player's symbol
         otherSymbol = None #other player's symbol
-        if currentSymbol is 'X':
+        if currentSymbol == 'X':
                 otherSymbol = 'O'
         else:
                 otherSymbol = 'X'

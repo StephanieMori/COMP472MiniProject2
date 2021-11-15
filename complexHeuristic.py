@@ -1,10 +1,3 @@
-game = [['.','.','*','.'],
-        ['X','.','.','O'],
-        ['.','.','.','.'],
-        ['.','*','.','O']]
-n = 4
-s = 3
-
 # note : iteration looks at rows first
 def scoreThisCell(game, x, y, n, s):
         currentSymbol = game.player_turn #the current player's symbol
@@ -20,7 +13,7 @@ def scoreThisCell(game, x, y, n, s):
         rowStreak = 0
         #first checking row associated with this cell
         for col in range(0,n):
-                if game[x][n] is currentSymbol or game[x][n] is '.':
+                if game[x][n] == currentSymbol or game[x][n] == '.':
                         rowStreak+=1
                         if game[x][n] == currentSymbol:
                                 numCurrentSymbols += 1

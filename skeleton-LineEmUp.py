@@ -7,7 +7,7 @@ import random
 import complexHeuristic
 import simpleHeuristic
 import alphabeta
-import minimax
+#import minimax
 import minimax2
 
 class Game:
@@ -22,7 +22,7 @@ class Game:
 	d1 = 0	#max depth for adversarial search player 1
 	d2 = 0	#max depth for adversarial search player 2
 	t = 0	#max time in secs to return move
-	alphabeta = None # if 1 then using alpha beta, if 0 then using minimax
+	alphabeta = None # if 1 then using alpha beta, if 0 then using minimax AKA a
 	simpleH = 1 #1 is using simple heuristic, 0 is using complex heuristic
 	mode = 0 #modes are 0:human-human 1:human-AI 2:AI-human 3:AI-AI
 	player1Mode = None
@@ -30,12 +30,12 @@ class Game:
 	p1heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	p2heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	
-	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True):
+	def __init__(self, n, s, b, d1, d2, t, alphabeta, mode):
 		self.initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode)
-		self.recommend = recommend
+		#self.recommend = recommend
 
 	# parameters are same as listed above
-	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode): # winning line-up size, number of blocks
+	def initialize_game(self, n, s, b, d1, d2, t, alphabeta, mode):
 		self.current_state = []
 		if n>=3 and n<=10 : #validating the parameters and setting them to the game if valid
 			self.n = n
@@ -249,7 +249,23 @@ class Game:
 			player_x = self.HUMAN
 		if player_o == None:
 			player_o = self.HUMAN
-		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", self.a, e1(regular)) # NEED TO CHECK THIS
+		a = None
+		if self.alphabeta == 1:
+			a = True
+		else:
+			a = False
+		p1HeuristicPrint = None
+		p2HeuristicPrint = None
+		if self.p1heuristic == 'e1':
+			p1HeuristicPrint = 'e1(regular)'
+		else:
+			p1HeuristicPrint = 'e2(defensive)'
+		if self.p2heuristic == 'e1':
+			p2HeuristicPrint = 'e1(regular)'
+		else:
+			p2HeuristicPrint = 'e2(defensive)'
+		print("Player 1: ", self.player1Mode, " d= ", self.d1, " a=", self.a, " ", p1HeuristicPrint)
+		print("Player 2: ", self.player2Mode, " d= ", self.d2, " a=", self.a, " ", p2HeuristicPrint)
 		while True:
 			self.draw_board()
 			if self.check_end():
@@ -281,9 +297,9 @@ class Game:
 def main():
 	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode, recommend = True)
 	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
-	g = Game( ... )
-	g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
-	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
+	g = Game(5, 4, 1, 3, 3, 10, 0, 0)
+#	g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
+#	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 if __name__ == "__main__":
 	main()
