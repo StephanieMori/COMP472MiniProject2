@@ -10,12 +10,12 @@ def is_end(self):
     winFoundX = False
     winFoundY = False
 
-    #first checking if all empty - if al empty return None
+    #first checking if all empty - if all empty return None
     for row in self.current_state:
         for item in row:
             if item == '.' or item =='*':
                 unplayedCells += 1
-    if unplayedCells == (n*n)-1:
+    if unplayedCells == n*n:
         return None
 
     # checking for X
@@ -23,7 +23,7 @@ def is_end(self):
     for i in range(n):
         streakX = 0
         for j in range(n):
-            if self.current_state[j][i] == 'X' :
+            if self.current_state[j][i] == 'X':
                 streakX += 1
             else:
                 streakX = 0

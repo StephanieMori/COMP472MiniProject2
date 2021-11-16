@@ -267,15 +267,15 @@ class Game:
 			start = time.time()
 			if self.alphabeta == 0:
 				if self.player_turn == 'X':
-					(_, x, y) = minimax2.minimax(max=False)
+					(_, x, y) = minimax2.minimax(self, max=False)
 				else:
-					(_, x, y) = minimax2.minimax(max=True)
+					(_, x, y) = minimax2.minimax(self, max=True)
 			else: # algo == self.
 				# BETA
 				if self.player_turn == 'X':
-					(m, x, y) = alphabeta.alphabeta(max=False)
+					(m, x, y) = alphabeta.alphabeta(self, max=False)
 				else:
-					(m, x, y) = alphabeta.alphabeta(max=True)
+					(m, x, y) = alphabeta.alphabeta(self, max=True)
 			end = time.time()
 			if (self.player_turn == 'X' and self.player1Mode == 'human') or (self.player_turn == 'O' and self.player2Mode == 'human'):
 				if self.recommend:

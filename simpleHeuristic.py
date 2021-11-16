@@ -12,9 +12,9 @@ def scoreThisCell(game, x, y, n, s):
         # note : x coordinate is rows
         #first checking row associated with this cell
         for col in range(0,n):
-                if game[x][n] is currentSymbol:
+                if game.current_state[x][col] == currentSymbol:
                         numCurrentSymbols += 1
-                if game[x][n] is otherSymbol:
+                if game.current_state[x][col] == otherSymbol:
                         numOtherSymbols += 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
@@ -25,9 +25,9 @@ def scoreThisCell(game, x, y, n, s):
         numOtherSymbols = 0
         #now checking the column associated with this cell
         for row in range(0,n):
-                if game[n][y] is currentSymbol:
+                if game.current_state[row][y] == currentSymbol:
                         numCurrentSymbols += 1
-                if game[n][y] is otherSymbol:
+                if game.current_state[row][y] == otherSymbol:
                         numOtherSymbols += 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
@@ -40,9 +40,9 @@ def scoreThisCell(game, x, y, n, s):
         xval = x-step
         yval = y-step
         while xval < n and yval < n :
-                if game[xval][yval] is currentSymbol:
+                if game.current_state[xval][yval] == currentSymbol:
                         numCurrentSymbols += 1
-                if game[xval][yval] is otherSymbol:
+                if game.current_state[xval][yval] == otherSymbol:
                         numOtherSymbols += 1
                 xval += 1
                 yval += 1
@@ -56,10 +56,10 @@ def scoreThisCell(game, x, y, n, s):
         step = min((n-x), (n-y)) -1
         xval = x+step
         yval = y+step
-        while xval >= 0 and yval >= 0 :
-                if game[xval][yval] is currentSymbol:
+        while xval > 0 and yval > 0 :
+                if game.current_state[xval][yval] == currentSymbol:
                         numCurrentSymbols += 1
-                if game[xval][yval] is otherSymbol:
+                if game.current_state[xval][yval] == otherSymbol:
                         numOtherSymbols += 1
                 xval += 1
                 yval += 1
