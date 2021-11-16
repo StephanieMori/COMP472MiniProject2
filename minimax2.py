@@ -7,6 +7,7 @@ import math
 currentDepth = 0
 i = 0
 j = 0
+num_eval_states = 0
 
 def minimax(self, max=False):
     # Minimizing for 'X' and maximizing for 'O'
@@ -46,10 +47,15 @@ def minimax(self, max=False):
         if heuristic == 'e1':
             # call simple heuristic
             score = simpleHeuristic.scoreThisCell(self, x, y, self.n, self.s)
+            minimax2.num_eval_states += 1  # calculate number of eval states in heuristic
         else:
             # call complex heuristic
             score = complexHeuristic.scoreThisCell(self, x, y, self.n, self.s)
+            minimax2.num_eval_states+=1#calculate number of eval states in heuristic
+
+
         print("score : ", score)
+        print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
         return (score, x, y)
 
     for i in range(0, self.n):
