@@ -89,3 +89,5 @@ def scoreThisCell(game, x, y, n, s):
                 #if there is the possibility of making a winning streak, get the score
                 score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
                 print("score with added diagonal 2 is (total score for this cell): ", score)
+
+        return score

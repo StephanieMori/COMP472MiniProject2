@@ -30,8 +30,9 @@ class Game:
 	p1heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	p2heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	
-	def __init__(self):
+	def __init__(self, recommend = True):
 		self.initialize_game()
+		self.recommend = recommend
 
 	# parameters are same as listed above
 	def initialize_game(self):
@@ -282,7 +283,7 @@ class Game:
 					print(F'Evaluation time: {round(end - start, self.t)}s')
 					print(F'Recommended move: x = {x}, y = {y}')
 				(x,y) = self.input_move()
-			if (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
+			elif (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
 						print(F'Evaluation time: {round(end - start, self.t)}s')
 						print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
 			self.current_state[x][y] = self.player_turn
@@ -291,7 +292,7 @@ class Game:
 def main():
 	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode)
 	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
-	g = Game()
+	g = Game(recommend=True)
 	g.play(5, 4, 1, 3, 3, 10, 0, 0)
 #	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 

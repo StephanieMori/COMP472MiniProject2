@@ -61,8 +61,10 @@ def scoreThisCell(game, x, y, n, s):
                         numCurrentSymbols += 1
                 if game.current_state[xval][yval] == otherSymbol:
                         numOtherSymbols += 1
-                xval += 1
-                yval += 1
+                xval -= 1
+                yval -= 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
         print("score with added diagonal 2 is (total score for this cell): ", score)
+
+        return score
