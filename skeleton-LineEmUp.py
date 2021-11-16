@@ -329,6 +329,15 @@ class Game:
 						print(F'Recommended move: x = {x}, y = {y} \n')
 						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				(x,y) = self.input_move()
+				with open("gameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print("Player ", self.player_turn, " under ", end="")
+					if (self.player_turn == 'X'):
+						print(self.player1Mode, " control", end="")
+					else:
+						print(self.player2Mode, " control", end="")
+					print(" plays ", x, y)
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			elif (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
 						print(F'Evaluation time: {round(end - start, self.t)}s')
 						with open("gameTrace.txt", 'a') as file:
