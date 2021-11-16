@@ -1,5 +1,8 @@
 # note : iteration looks at rows first
+
+
 def scoreThisCell(game, x, y, n, s):
+        num_eval_states = 0
         currentSymbol = game.player_turn #the current player's symbol
         otherSymbol = None #other player's symbol
         if currentSymbol == 'X':
@@ -14,8 +17,10 @@ def scoreThisCell(game, x, y, n, s):
         for col in range(0,n):
                 if game.current_state[x][col] == currentSymbol:
                         numCurrentSymbols += 1
+
                 if game.current_state[x][col] == otherSymbol:
                         numOtherSymbols += 1
+                num_eval_states += 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
         print("score with row is : ", score)
@@ -27,8 +32,10 @@ def scoreThisCell(game, x, y, n, s):
         for row in range(0,n):
                 if game.current_state[row][y] == currentSymbol:
                         numCurrentSymbols += 1
+
                 if game.current_state[row][y] == otherSymbol:
                         numOtherSymbols += 1
+                num_eval_states += 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
         print("score with added column is : ", score)
@@ -42,10 +49,12 @@ def scoreThisCell(game, x, y, n, s):
         while xval < n and yval < n :
                 if game.current_state[xval][yval] == currentSymbol:
                         numCurrentSymbols += 1
+
                 if game.current_state[xval][yval] == otherSymbol:
                         numOtherSymbols += 1
                 xval += 1
                 yval += 1
+                num_eval_states += 1
         #get the score
         score = score + pow(2, numCurrentSymbols) - pow(2, numOtherSymbols)
         print("score with added diagonal 1 is : ", score)
@@ -59,6 +68,7 @@ def scoreThisCell(game, x, y, n, s):
         while xval > 0 and yval > 0 :
                 if game.current_state[xval][yval] == currentSymbol:
                         numCurrentSymbols += 1
+                        num_eval_states += 1
                 if game.current_state[xval][yval] == otherSymbol:
                         numOtherSymbols += 1
                 xval -= 1

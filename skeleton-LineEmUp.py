@@ -322,6 +322,7 @@ class Game:
 					with open("gameTrace.txt", 'a') as file:
 						sys.stdout = file  # Change the standard output to the file I created above
 						print(F'Evaluation time: {round(end - start, self.t)}s \n')
+
 						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 					print(F'Recommended move: x = {x}, y = {y}')
 					with open("gameTrace.txt", 'a') as file:

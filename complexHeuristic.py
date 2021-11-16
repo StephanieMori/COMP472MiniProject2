@@ -1,5 +1,6 @@
 # note : iteration looks at rows first
 def scoreThisCell(game, x, y, n, s):
+        num_eval_states  = 0
         currentSymbol = game.player_turn #the current player's symbol
         otherSymbol = None #other player's symbol
         if currentSymbol == 'X':
@@ -56,6 +57,7 @@ def scoreThisCell(game, x, y, n, s):
                         diag1Streak += 1
                         if game[xval][yval] == currentSymbol:
                                 numCurrentSymbols += 1
+
                 else:
                         diag1Streak = 0
                         if game[xval][yval] == otherSymbol:
@@ -79,6 +81,7 @@ def scoreThisCell(game, x, y, n, s):
                         diag2Streak += 1
                         if game[xval][yval] == currentSymbol:
                                 numCurrentSymbols += 1
+
                 else:
                         diag2Streak = 0
                         if game[xval][yval] == otherSymbol:
