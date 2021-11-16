@@ -1,5 +1,5 @@
 # based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
-
+import sys
 import time
 import isEnd
 import math
@@ -29,6 +29,8 @@ class Game:
 	player2Mode = None
 	p1heuristic = None # e1 = simple heuristic e2 = complex heuristic
 	p2heuristic = None # e1 = simple heuristic e2 = complex heuristic
+
+	original_stdout = sys.stdout
 	
 	def __init__(self, recommend = True):
 		self.initialize_game()
@@ -146,8 +148,20 @@ class Game:
 		for y in range(0, self.n):
 			for x in range(0, self.n):
 				print(F'{self.current_state[x][y]}', end="")
+				with open("gameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print(F'{self.current_state[x][y]}', end="")
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			print()
+			with open("gameTrace.txt", 'a') as file:
+				sys.stdout = file  # Change the standard output to the file I created above
+				print(" ")
+				sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		print()
+		with open("gameTrace.txt", 'a') as file:
+			sys.stdout = file  # Change the standard output to the file I created above
+			print(" ")
+			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		
 	def is_valid(self, px, py): #edited to work with line em up
 		if px < 0 or px >= self.n or py < 0 or py >= self.n:
@@ -163,10 +177,22 @@ class Game:
 		if self.result != None:
 			if self.result == 'X':
 				print('The winner is X!')
+				with open("gameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print('The winner is X!\n')
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			elif self.result == 'O':
 				print('The winner is O!')
+				with open("gameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print('The winner is O!\n')
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			elif self.result == '.':
 				print("It's a tie!")
+				with open("gameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print('The winner is X!\n')
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			self.initialize_game()
 		return self.result
 
@@ -239,6 +265,10 @@ class Game:
 				new.append(".")
 			self.current_state.append(new)
 		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
+		with open("gameTrace.txt", 'a') as file:
+			sys.stdout = file  # Change the standard output to the file I created above
+			print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t, "\n")
+			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		#before setting first player, ask where want blocks, and set them
 		self.setBlocks()
 		# Ask users which heuristic they want
@@ -260,7 +290,15 @@ class Game:
 		else:
 			p2HeuristicPrint = 'e2(defensive)'
 		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", a, " ", p1HeuristicPrint)
+		with open("gameTrace.txt", 'a') as file:
+			sys.stdout = file  # Change the standard output to the file I created above
+			print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", a, " ", p1HeuristicPrint, "\n")
+			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		print("Player 2: ", self.player2Mode, " d=", self.d2, " a=", a, " ", p2HeuristicPrint)
+		with open("gameTrace.txt", 'a') as file:
+			sys.stdout = file  # Change the standard output to the file I created above
+			print("Player 2: ", self.player2Mode, " d=", self.d2, " a=", a, " ", p2HeuristicPrint, "\n")
+			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		while True:
 			self.draw_board()
 			if self.check_end():
@@ -281,11 +319,27 @@ class Game:
 			if (self.player_turn == 'X' and self.player1Mode == 'human') or (self.player_turn == 'O' and self.player2Mode == 'human'):
 				if self.recommend:
 					print(F'Evaluation time: {round(end - start, self.t)}s')
+					with open("gameTrace.txt", 'a') as file:
+						sys.stdout = file  # Change the standard output to the file I created above
+						print(F'Evaluation time: {round(end - start, self.t)}s \n')
+						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 					print(F'Recommended move: x = {x}, y = {y}')
+					with open("gameTrace.txt", 'a') as file:
+						sys.stdout = file  # Change the standard output to the file I created above
+						print(F'Recommended move: x = {x}, y = {y} \n')
+						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				(x,y) = self.input_move()
 			elif (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
 						print(F'Evaluation time: {round(end - start, self.t)}s')
+						with open("gameTrace.txt", 'a') as file:
+							sys.stdout = file  # Change the standard output to the file I created above
+							print(F'Evaluation time: {round(end - start, self.t)}s \n')
+							sys.stdout = self.original_stdout  # Reset the standard output to its original value
 						print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
+						with open("gameTrace.txt", 'a') as file:
+							sys.stdout = file  # Change the standard output to the file I created above
+							print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y} \n')
+							sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
 
