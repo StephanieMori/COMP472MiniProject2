@@ -31,7 +31,7 @@ def minimax(self, max=False):
         heuristic = self.p2heuristic
 #    currentDepth = 0
     result = isEnd.is_end(self)
-    print("is end result : ", result)
+    # print("is end result : ", result)
     if result == 'X':
         minimax2.currentDepth -= 1
         return (-1, x, y)
@@ -42,7 +42,7 @@ def minimax(self, max=False):
         minimax2.currentDepth -= 1
         return (0, x, y)
     elif minimax2.currentDepth >= maxDepth:
-        #call heuristics - this is our last level of nodes
+        # call heuristics - this is our last level of nodes
         minimax2.currentDepth -= 1
         if heuristic == 'e1':
             # call simple heuristic
@@ -50,11 +50,11 @@ def minimax(self, max=False):
         else:
             # call complex heuristic
             score = complexHeuristic.scoreThisCell(self, x, y, self.n, self.s)
-        minimax2.num_eval_states+=1#calculate number of eval states in heuristic
+        minimax2.num_eval_states += 1     # calculate number of eval states in heuristic
 
 
-        print("score : ", score)
-        print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
+        # print("score : ", score)
+        # print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
         return (score, x, y)
 
     for i in range(0, self.n):
@@ -63,9 +63,9 @@ def minimax(self, max=False):
                 if max:
                     self.current_state[i][j] = 'O'
                     minimax2.currentDepth += 1
-                    print("currentDepth:" , minimax2.currentDepth)
+                    # print("currentDepth: ", minimax2.currentDepth)
                     (v, _, _) = minimax(self, max=False)
-                    print("v : ", v)
+                    # print("v : ", v)
                     if v > value:
                         value = v
                         x = i
@@ -73,9 +73,9 @@ def minimax(self, max=False):
                 else:
                     self.current_state[i][j] = 'X'
                     minimax2.currentDepth += 1
-                    print("currentDepth:", minimax2.currentDepth)
+                    # print("currentDepth:", minimax2.currentDepth)
                     (v, _, _) = minimax(self, max=True)
-                    print("v : ", v)
+                    # print("v : ", v)
                     if v < value:
                         value = v
                         x = i

@@ -10,7 +10,7 @@ def is_end(self):
     winFoundX = False
     winFoundY = False
 
-    #first checking if all empty - if all empty return None
+    # first checking if all empty - if all empty return None
     for row in self.current_state:
         for item in row:
             if item == '.' or item =='*':
