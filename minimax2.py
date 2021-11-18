@@ -54,7 +54,7 @@ def minimax(self, max=False):
 
 
         print("score : ", score)
-        print("3 of states Evaluated in heuristic: ", minimax2.num_eval_states)
+        print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
         return (score, x, y)
 
     for i in range(0, self.n):

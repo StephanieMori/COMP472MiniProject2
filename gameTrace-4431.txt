@@ -1,0 +1,3 @@
+n= 4  b= 4  s= 3  t= 1 
+
+Not possible to place the blocks - they extend past the size of the board

@@ -1,0 +1,17 @@
+n= 5  b= 4  s= 4  t= 5 
+
+Player 1:  AI  d= 6  a= True   e2(defensive) 
+
+Player 2:  AI  d= 6  a= True   e1(regular) 
+
+*.... 
+..... 
+.*.*. 
+.*... 
+..... 
+ 
+
+Encountering new error in calling minimax in recursive way
+TypeError: 'int' object is not callable
+
+Not quite sure how to explain this problem...

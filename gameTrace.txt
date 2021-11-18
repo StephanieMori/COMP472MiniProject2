@@ -1,0 +1,16 @@
+n= 5  b= 1  s= 4  t= 10 
+
+Player 1:  human  d= 3  a= False   e1(regular) 
+
+Player 2:  human  d= 3  a= False   e1(regular) 
+
+..... 
+..... 
+..... 
+..... 
+...*. 
+ 
+Evaluation time: 0.0050239563s 
+
+Recommended move: x = 1, y = 2 
+
