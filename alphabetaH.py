@@ -1,5 +1,6 @@
 import math
 import complexHeuristic
+import isEnd
 import simpleHeuristic
 
 num_eval_states=0
@@ -19,12 +20,12 @@ def alphabeta(self, alpha=-math.inf, beta=math.inf, max=False):
     heuristic = None
     if self.player_turn == 'X':
         maxDepth = self.d1
-        heuristic = self.player1Heuristic
+        heuristic = self.p1heuristic
     else:
         maxDepth = self.d2
-        heuristic = self.player2Heuristic
+        heuristic = self.p2heuristic
     currentDepth = 0
-    result = self.is_end(self)
+    result = isEnd.is_end(self)
     if result == 'X':
         return (-1, x, y)
     elif result == 'O':
@@ -37,11 +38,11 @@ def alphabeta(self, alpha=-math.inf, beta=math.inf, max=False):
         if heuristic == 'e1':
             # call simple heuristic
             simpleHeuristic.scoreThisCell(self, x, y, self.n, self.s)
-            alphabeta.num_eval_states += 1  # calculate number of eval states in heuris
+            alphabeta.num_eval_states += 1  # calculate number of eval states in heuristic
         else:
             # call complex heuristic
             complexHeuristic.scoreThisCell(self, x, y, self.n, self.s)
-            alphabeta.num_eval_states += 1  # calculate number of eval states in heuris
+            alphabeta.num_eval_states += 1  # calculate number of eval states in heuristic
 
     for i in range(0, self.n):
         for j in range(0, self.n):
@@ -49,7 +50,7 @@ def alphabeta(self, alpha=-math.inf, beta=math.inf, max=False):
                 if max:
                     self.current_state[i][j] = 'O'
                     currentDepth += 1
-                    (v, _, _) = self.alphabeta(alpha, beta, max=False)
+                    (v, _, _) = alphabeta(alpha, beta, max=False)
                     if v > value:
                         value = v
                         x = i
@@ -60,7 +61,7 @@ def alphabeta(self, alpha=-math.inf, beta=math.inf, max=False):
                     currentDepth += 1
                     nodes = currentDepth
                     nodes += 1
-                    (v, _, _) = self.alphabeta(alpha, beta, max=True)
+                    (v, _, _) = alphabeta(alpha, beta, max=True)
                     if v < value:
                         value = v
                         x = i

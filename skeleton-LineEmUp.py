@@ -6,7 +6,7 @@ import math
 import random
 import complexHeuristic
 import simpleHeuristic
-import alphabeta
+import alphabetaH
 #import minimax
 import minimax2
 
@@ -307,14 +307,16 @@ class Game:
 			if self.alphabeta == 0:
 				if self.player_turn == 'X':
 					(_, x, y) = minimax2.minimax(self, max=False)
+					print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
 				else:
 					(_, x, y) = minimax2.minimax(self, max=True)
+					print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
 			else: # algo == self.
 				# BETA
 				if self.player_turn == 'X':
-					(m, x, y) = alphabeta.alphabeta(self, max=False)
+					(m, x, y) = alphabetaH.alphabeta(self, max=False)
 				else:
-					(m, x, y) = alphabeta.alphabeta(self, max=True)
+					(m, x, y) = alphabetaH.alphabeta(self, max=True)
 			end = time.time()
 			if (self.player_turn == 'X' and self.player1Mode == 'human') or (self.player_turn == 'O' and self.player2Mode == 'human'):
 				if self.recommend:
