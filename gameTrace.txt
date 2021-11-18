@@ -1131,3 +1131,221 @@ O....
 .X*O. 
 .X... 
  
+n= 5  b= 2  s= 4  t= 10 
+
+n= 5  b= 2  s= 4  t= 10 
+
+Player 1:  human  d= 3  a= True   e1(regular) 
+
+Player 2:  human  d= 3  a= True   e1(regular) 
+
+..... 
+....* 
+..... 
+..*.. 
+..... 
+ 
+n= 5  b= 2  s= 4  t= 10 
+
+Player 1:  human  d= 3  a= False   e1(regular) 
+
+Player 2:  human  d= 3  a= False   e1(regular) 
+
+..... 
+....* 
+..... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0029988289s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  1 2
+..... 
+....* 
+.X... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0007648468s 
+
+Recommended move: x = 0, y = 0 
+
+Player  O  under human  control plays  0 0
+O.... 
+....* 
+.X... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0015330315s 
+
+Recommended move: x = 1, y = 3 
+
+Player  X  under human  control plays  1 3
+O.... 
+....* 
+.X... 
+.X*.. 
+..... 
+ 
+Evaluation time: 0.0009269714s 
+
+Recommended move: x = 1, y = 1 
+
+Player  O  under human  control plays  1 1
+O.... 
+.O..* 
+.X... 
+.X*.. 
+..... 
+ 
+Evaluation time: 0.0007150173s 
+
+Recommended move: x = 1, y = 4 
+
+Player  X  under human  control plays  1 4
+O.... 
+.O..* 
+.X... 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.0006759167s 
+
+Recommended move: x = 2, y = 2 
+
+Player  O  under human  control plays  2 2
+O.... 
+.O..* 
+.XO.. 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.0008609295s 
+
+Recommended move: x = 2, y = 1 
+
+Player  X  under human  control plays  2 1
+O.... 
+.OX.* 
+.XO.. 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.0007798672s 
+
+Recommended move: x = 3, y = 3 
+
+Player  O  under human  control plays  3 3
+O.... 
+.OX.* 
+.XO.. 
+.X*O. 
+.X... 
+ 
+n= 5  b= 2  s= 4  t= 10 
+
+Player 1:  AI  d= 3  a= False   e1(regular) 
+
+Player 2:  AI  d= 3  a= False   e1(regular) 
+
+..... 
+....* 
+..... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0028719902s 
+
+Player X under AI control plays: x = 1, y = 2 
+
+..... 
+....* 
+.X... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0009651184s 
+
+Player O under AI control plays: x = 0, y = 0 
+
+O.... 
+....* 
+.X... 
+..*.. 
+..... 
+ 
+Evaluation time: 0.0009219646s 
+
+Player X under AI control plays: x = 1, y = 3 
+
+O.... 
+....* 
+.X... 
+.X*.. 
+..... 
+ 
+Evaluation time: 0.0030589104s 
+
+Player O under AI control plays: x = 1, y = 1 
+
+O.... 
+.O..* 
+.X... 
+.X*.. 
+..... 
+ 
+Evaluation time: 0.0011861324s 
+
+Player X under AI control plays: x = 1, y = 4 
+
+O.... 
+.O..* 
+.X... 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.000828743s 
+
+Player O under AI control plays: x = 2, y = 2 
+
+O.... 
+.O..* 
+.XO.. 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.0007050037s 
+
+Player X under AI control plays: x = 2, y = 1 
+
+O.... 
+.OX.* 
+.XO.. 
+.X*.. 
+.X... 
+ 
+Evaluation time: 0.0006480217s 
+
+Player O under AI control plays: x = 3, y = 3 
+
+O.... 
+.OX.* 
+.XO.. 
+.X*O. 
+.X... 
+ 
+n= 5  b= 2  s= 4  t= 10 
+
+Player 1:  human  d= 3  a= True   e1(regular) 
+
+Player 2:  human  d= 3  a= True   e1(regular) 
+
+..... 
+....* 
+..... 
+..*.. 
+..... 
+ 

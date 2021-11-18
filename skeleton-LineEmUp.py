@@ -148,17 +148,17 @@ class Game:
 		for y in range(0, self.n):
 			for x in range(0, self.n):
 				print(F'{self.current_state[x][y]}', end="")
-				with open("gameTrace.txt", 'a') as file:
+				with open("demoGameTrace.txt", 'a') as file:
 					sys.stdout = file  # Change the standard output to the file I created above
 					print(F'{self.current_state[x][y]}', end="")
 					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			print()
-			with open("gameTrace.txt", 'a') as file:
+			with open("demoGameTrace.txt", 'a') as file:
 				sys.stdout = file  # Change the standard output to the file I created above
 				print(" ")
 				sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		print()
-		with open("gameTrace.txt", 'a') as file:
+		with open("demoGameTrace.txt", 'a') as file:
 			sys.stdout = file  # Change the standard output to the file I created above
 			print(" ")
 			sys.stdout = self.original_stdout  # Reset the standard output to its original value
@@ -240,8 +240,9 @@ class Game:
 				new.append(".")
 			self.current_state.append(new)
 		print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t)
-		with open("gameTrace.txt", 'a') as file:
+		with open("demoGameTrace.txt", 'a') as file:
 			sys.stdout = file  # Change the standard output to the file I created above
+			print("\n\n===== ===== New Game ===== =====\n")
 			print("n=", self.n, " b=", self.b, " s=", self.s, " t=", t, "\n")
 			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		#before setting first player, ask where want blocks, and set them
@@ -265,12 +266,12 @@ class Game:
 		else:
 			p2HeuristicPrint = 'e2(defensive)'
 		print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", a, " ", p1HeuristicPrint)
-		with open("gameTrace.txt", 'a') as file:
+		with open("demoGameTrace.txt", 'a') as file:
 			sys.stdout = file  # Change the standard output to the file I created above
 			print("Player 1: ", self.player1Mode, " d=", self.d1, " a=", a, " ", p1HeuristicPrint, "\n")
 			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		print("Player 2: ", self.player2Mode, " d=", self.d2, " a=", a, " ", p2HeuristicPrint)
-		with open("gameTrace.txt", 'a') as file:
+		with open("demoGameTrace.txt", 'a') as file:
 			sys.stdout = file  # Change the standard output to the file I created above
 			print("Player 2: ", self.player2Mode, " d=", self.d2, " a=", a, " ", p2HeuristicPrint, "\n")
 			sys.stdout = self.original_stdout  # Reset the standard output to its original value
@@ -278,12 +279,24 @@ class Game:
 			self.draw_board()
 			if isEnd.is_end(self) == 'X':
 				print("Winner is player X, congrats!")
+				with open("demoGameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print("Winner is player X, congrats!")
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				return
 			elif isEnd.is_end(self) == 'Y':
 				print("Winner is player Y, congrats!")
+				with open("demoGameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print("Winner is player Y, congrats!")
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				return
 			elif isEnd.is_end(self) == '.':
 				print("It's a tie!")
+				with open("demoGameTrace.txt", 'a') as file:
+					sys.stdout = file  # Change the standard output to the file I created above
+					print("It's a tie!")
+					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				return
 			start = time.time()
 			if self.alphabeta == 0:
@@ -303,18 +316,18 @@ class Game:
 			if (self.player_turn == 'X' and self.player1Mode == 'human') or (self.player_turn == 'O' and self.player2Mode == 'human'):
 				if self.recommend:
 					print(F'Evaluation time: {round(end - start, self.t)}s')
-					with open("gameTrace.txt", 'a') as file:
+					with open("demoGameTrace.txt", 'a') as file:
 						sys.stdout = file  # Change the standard output to the file I created above
 						print(F'Evaluation time: {round(end - start, self.t)}s \n')
 
 						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 					print(F'Recommended move: x = {x}, y = {y}')
-					with open("gameTrace.txt", 'a') as file:
+					with open("demoGameTrace.txt", 'a') as file:
 						sys.stdout = file  # Change the standard output to the file I created above
 						print(F'Recommended move: x = {x}, y = {y} \n')
 						sys.stdout = self.original_stdout  # Reset the standard output to its original value
 				(x,y) = self.input_move()
-				with open("gameTrace.txt", 'a') as file:
+				with open("demoGameTrace.txt", 'a') as file:
 					sys.stdout = file  # Change the standard output to the file I created above
 					print("Player ", self.player_turn, " under ", end="")
 					if (self.player_turn == 'X'):
@@ -325,12 +338,12 @@ class Game:
 					sys.stdout = self.original_stdout  # Reset the standard output to its original value
 			elif (self.player_turn == 'X' and self.player1Mode == 'AI') or (self.player_turn == 'O' and self.player2Mode == 'AI'):
 						print(F'Evaluation time: {round(end - start, self.t)}s')
-						with open("gameTrace.txt", 'a') as file:
+						with open("demoGameTrace.txt", 'a') as file:
 							sys.stdout = file  # Change the standard output to the file I created above
 							print(F'Evaluation time: {round(end - start, self.t)}s \n')
 							sys.stdout = self.original_stdout  # Reset the standard output to its original value
 						print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
-						with open("gameTrace.txt", 'a') as file:
+						with open("demoGameTrace.txt", 'a') as file:
 							sys.stdout = file  # Change the standard output to the file I created above
 							print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y} \n')
 							sys.stdout = self.original_stdout  # Reset the standard output to its original value
@@ -341,7 +354,7 @@ def main():
 	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode)
 	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
 	g = Game(recommend=True)
-	g.play(5, 4, 2, 3, 3, 10, 0, 3)
+	g.play(4, 3, 0, 6, 6, 5, 0, 0)
 #	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 if __name__ == "__main__":

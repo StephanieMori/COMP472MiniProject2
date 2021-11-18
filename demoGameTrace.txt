@@ -1,0 +1,450 @@
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  AI  d= 6  a= False   e2(defensive) 
+
+Player 2:  AI  d= 6  a= False   e2(defensive) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00768s 
+
+Player X under AI control plays: x = 1, y = 2 
+
+.... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00058s 
+
+Player O under AI control plays: x = 0, y = 0 
+
+O... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00051s 
+
+Player X under AI control plays: x = 1, y = 3 
+
+O... 
+.... 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00047s 
+
+Player O under AI control plays: x = 1, y = 1 
+
+O... 
+.O.. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00045s 
+
+Player X under AI control plays: x = 2, y = 1 
+
+O... 
+.OX. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00038s 
+
+Player O under AI control plays: x = 2, y = 2 
+
+O... 
+.OX. 
+.XO. 
+.X.. 
+ 
+Winner is player Y, congrats!
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  AI  d= 6  a= False   e1(regular) 
+
+Player 2:  AI  d= 6  a= False   e2(defensive) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00278s 
+
+Player X under AI control plays: x = 1, y = 2 
+
+.... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00053s 
+
+Player O under AI control plays: x = 0, y = 0 
+
+O... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00046s 
+
+Player X under AI control plays: x = 1, y = 3 
+
+O... 
+.... 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00047s 
+
+Player O under AI control plays: x = 1, y = 1 
+
+O... 
+.O.. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00041s 
+
+Player X under AI control plays: x = 2, y = 1 
+
+O... 
+.OX. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00037s 
+
+Player O under AI control plays: x = 2, y = 2 
+
+O... 
+.OX. 
+.XO. 
+.X.. 
+ 
+Winner is player Y, congrats!
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  AI  d= 6  a= False   e2(defensive) 
+
+Player 2:  AI  d= 6  a= False   e2(defensive) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00306s 
+
+Player X under AI control plays: x = 1, y = 2 
+
+.... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00057s 
+
+Player O under AI control plays: x = 0, y = 0 
+
+O... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.0005s 
+
+Player X under AI control plays: x = 1, y = 3 
+
+O... 
+.... 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00066s 
+
+Player O under AI control plays: x = 1, y = 1 
+
+O... 
+.O.. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00045s 
+
+Player X under AI control plays: x = 2, y = 1 
+
+O... 
+.OX. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.0004s 
+
+Player O under AI control plays: x = 2, y = 2 
+
+O... 
+.OX. 
+.XO. 
+.X.. 
+ 
+Winner is player Y, congrats!
+
+
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  human  d= 6  a= False   e1(regular) 
+
+Player 2:  human  d= 6  a= False   e1(regular) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00229s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  0 0
+X... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00481s 
+
+Recommended move: x = 1, y = 1 
+
+Player  O  under human  control plays  1 1
+X... 
+.O.. 
+.... 
+.... 
+ 
+Evaluation time: 0.00061s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  0 1
+X... 
+XO.. 
+.... 
+.... 
+ 
+Evaluation time: 0.00055s 
+
+Recommended move: x = 2, y = 2 
+
+Player  O  under human  control plays  2 2
+X... 
+XO.. 
+..O. 
+.... 
+ 
+Evaluation time: 0.0005s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  0 2
+X... 
+XO.. 
+X.O. 
+.... 
+ 
+Evaluation time: 0.00042s 
+
+Recommended move: x = 3, y = 3 
+
+Player  O  under human  control plays  1 2
+X... 
+XO.. 
+XOO. 
+.... 
+ 
+Evaluation time: 0.00042s 
+
+Recommended move: x = 0, y = 3 
+
+Player  X  under human  control plays  0 3
+X... 
+XO.. 
+XOO. 
+X... 
+ 
+Winner is player X, congrats!
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  human  d= 6  a= False   e1(regular) 
+
+Player 2:  human  d= 6  a= False   e2(defensive) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00396s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  1 2
+.... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00066s 
+
+Recommended move: x = 0, y = 0 
+
+Player  O  under human  control plays  0 0
+O... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00059s 
+
+Recommended move: x = 1, y = 3 
+
+Player  X  under human  control plays  1 3
+O... 
+.... 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00063s 
+
+Recommended move: x = 1, y = 1 
+
+Player  O  under human  control plays  1 1
+O... 
+.O.. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00052s 
+
+Recommended move: x = 2, y = 1 
+
+Player  X  under human  control plays  2 1
+O... 
+.OX. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00051s 
+
+Recommended move: x = 2, y = 2 
+
+Player  O  under human  control plays  2 2
+O... 
+.OX. 
+.XO. 
+.X.. 
+ 
+Winner is player Y, congrats!
+
+
+===== ===== New Game ===== =====
+
+n= 4  b= 0  s= 3  t= 5 
+
+Player 1:  human  d= 6  a= False   e2(defensive) 
+
+Player 2:  human  d= 6  a= False   e2(defensive) 
+
+.... 
+.... 
+.... 
+.... 
+ 
+Evaluation time: 0.00321s 
+
+Recommended move: x = 1, y = 2 
+
+Player  X  under human  control plays  1 2
+.... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00065s 
+
+Recommended move: x = 0, y = 0 
+
+Player  O  under human  control plays  0 0
+O... 
+.... 
+.X.. 
+.... 
+ 
+Evaluation time: 0.00062s 
+
+Recommended move: x = 1, y = 3 
+
+Player  X  under human  control plays  1 3
+O... 
+.... 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00056s 
+
+Recommended move: x = 1, y = 1 
+
+Player  O  under human  control plays  1 1
+O... 
+.O.. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00055s 
+
+Recommended move: x = 2, y = 1 
+
+Player  X  under human  control plays  2 1
+O... 
+.OX. 
+.X.. 
+.X.. 
+ 
+Evaluation time: 0.00049s 
+
+Recommended move: x = 2, y = 2 
+
+Player  O  under human  control plays  2 2
+O... 
+.OX. 
+.XO. 
+.X.. 
+ 
+Winner is player Y, congrats!

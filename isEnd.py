@@ -75,10 +75,10 @@ def is_end(self):
 
     # checking for Y
     # Vertical win
-    for i in range(n):
+    for j in range(n):
         streakY = 0
-        for j in range(n):
-            if self.current_state[j][i] == 'O':
+        for i in range(n):
+            if self.current_state[i][j] == 'O':
                 streakY += 1
             else:
                 streakY = 0
