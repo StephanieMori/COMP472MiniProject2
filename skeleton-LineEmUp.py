@@ -171,31 +171,6 @@ class Game:
 		else:
 			return True
 
-	def check_end(self): # works with line em up needs
-		self.result = isEnd.is_end(self)
-		# Printing the appropriate message if the game has ended
-		if self.result != None:
-			if self.result == 'X':
-				print('The winner is X!')
-				with open("gameTrace.txt", 'a') as file:
-					sys.stdout = file  # Change the standard output to the file I created above
-					print('The winner is X!\n')
-					sys.stdout = self.original_stdout  # Reset the standard output to its original value
-			elif self.result == 'O':
-				print('The winner is O!')
-				with open("gameTrace.txt", 'a') as file:
-					sys.stdout = file  # Change the standard output to the file I created above
-					print('The winner is O!\n')
-					sys.stdout = self.original_stdout  # Reset the standard output to its original value
-			elif self.result == '.':
-				print("It's a tie!")
-				with open("gameTrace.txt", 'a') as file:
-					sys.stdout = file  # Change the standard output to the file I created above
-					print('The winner is X!\n')
-					sys.stdout = self.original_stdout  # Reset the standard output to its original value
-			self.initialize_game()
-		return self.result
-
 	def input_move(self):
 		while True:
 			print(F'Player {self.player_turn}, enter your move:')
@@ -301,7 +276,14 @@ class Game:
 			sys.stdout = self.original_stdout  # Reset the standard output to its original value
 		while True:
 			self.draw_board()
-			if self.check_end():
+			if isEnd.is_end(self) == 'X':
+				print("Winner is player X, congrats!")
+				return
+			elif isEnd.is_end(self) == 'Y':
+				print("Winner is player Y, congrats!")
+				return
+			elif isEnd.is_end(self) == '.':
+				print("It's a tie!")
 				return
 			start = time.time()
 			if self.alphabeta == 0:
@@ -359,7 +341,7 @@ def main():
 	# reminder - Game parameters are (self, n, s, b, d1, d2, t, alphabeta, mode)
 	# note : recommend parameter is just to allow calculated recommendations - just gonna leave it that way
 	g = Game(recommend=True)
-	g.play(5, 4, 1, 3, 3, 10, 0, 0)
+	g.play(5, 4, 2, 3, 3, 10, 0, 3)
 #	g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 if __name__ == "__main__":

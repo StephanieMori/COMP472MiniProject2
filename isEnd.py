@@ -23,7 +23,8 @@ def is_end(self):
     for i in range(n):
         streakX = 0
         for j in range(n):
-            if self.current_state[j][i] == 'X':
+            currentCell = self.current_state[j][i]
+            if self.current_state[i][j] == 'X':
                 streakX += 1
             else:
                 streakX = 0
@@ -77,7 +78,7 @@ def is_end(self):
     for i in range(n):
         streakY = 0
         for j in range(n):
-            if self.current_state[j][i] == 'Y' :
+            if self.current_state[j][i] == 'O':
                 streakY += 1
             else:
                 streakY = 0
@@ -91,7 +92,7 @@ def is_end(self):
         for i in range(n):
             streakY = 0
             for j in range(n):
-                if self.current_state[i][j] == 'Y':
+                if self.current_state[i][j] == 'O':
                     streakY += 1
                 else:
                     streakY = 0
@@ -102,9 +103,9 @@ def is_end(self):
 
     # checking diagonal 1
     if winFoundY is False:
+        streakY = 0
         for i in range(n):
-            streakY = 0
-            if self.current_state[i][i] == 'Y':
+            if self.current_state[i][i] == 'O':
                 streakY += 1
             else:
                 streakY = 0
@@ -117,7 +118,7 @@ def is_end(self):
     if winFoundY is False:
         for i in range(n):
             streakY = 0
-            if self.current_state[i][n-1-i] == 'Y':
+            if self.current_state[i][n-1-i] == 'O':
                 streakY += 1
             else:
                 streakY = 0
