@@ -47,15 +47,14 @@ def minimax(self, max=False):
         if heuristic == 'e1':
             # call simple heuristic
             score = simpleHeuristic.scoreThisCell(self, x, y, self.n, self.s)
-            minimax2.num_eval_states += 1  # calculate number of eval states in heuristic
         else:
             # call complex heuristic
             score = complexHeuristic.scoreThisCell(self, x, y, self.n, self.s)
-            minimax2.num_eval_states+=1#calculate number of eval states in heuristic
+        minimax2.num_eval_states+=1#calculate number of eval states in heuristic
 
 
         print("score : ", score)
-        print("Number of states Evaluated in heuristic: ", minimax2.num_eval_states)
+        print("3 of states Evaluated in heuristic: ", minimax2.num_eval_states)
         return (score, x, y)
 
     for i in range(0, self.n):
@@ -83,3 +82,4 @@ def minimax(self, max=False):
                         y = j
                 self.current_state[i][j] = '.'
     return (value, x, y)
+
